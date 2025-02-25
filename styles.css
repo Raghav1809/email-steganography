@@ -1,0 +1,201 @@
+/* Base styles and theme variables */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --success-gradient: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-gradient: linear-gradient(135deg, #1a1c2c 0%, #2d3047 100%);
+    }
+    
+    body {
+        color: #ffffff;
+    }
+
+    .custom-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .form-label {
+        color: #e0e0e0;
+    }
+
+    .custom-textarea {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+        border-color: #4a4a4a;
+    }
+}
+
+/* Existing and enhanced body styles */
+body {
+    background: var(--background-gradient);
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* Enhanced card styles */
+.custom-card {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1rem;
+    border-bottom: none;
+}
+
+.card-title {
+    color: white;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Enhanced textarea styles */
+.custom-textarea {
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    resize: none;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 12px;
+}
+
+.custom-textarea::placeholder {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.custom-textarea:focus::placeholder {
+    opacity: 0.4;
+}
+
+/* Enhanced button styles */
+.custom-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.custom-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.custom-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Enhanced accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .custom-card,
+    .custom-btn,
+    .custom-textarea,
+    .animate__animated {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Screen reader only text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Loading state styles */
+.custom-btn.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.custom-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s infinite linear;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Focus styles for better accessibility */
+.custom-textarea:focus,
+.custom-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.4);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .custom-card {
+        margin-bottom: 15px;
+    }
+
+    .custom-textarea {
+        font-size: 16px; /* Prevents zoom on mobile */
+    }
+
+    .custom-btn {
+        padding: 10px 20px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .custom-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    .custom-btn {
+        display: none;
+    }
+}
